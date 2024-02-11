@@ -22,7 +22,7 @@ class _AddPageState extends State<AddPage> {
             TextField(
               textInputAction: TextInputAction.next,
               controller: myController,
-              decoration: InputDecoration(labelText: '할일을 입력하세요'),
+              decoration: InputDecoration(labelText: 'Write down your task'),
             ),
             OutlinedButton(
                 onPressed: () {
@@ -30,7 +30,7 @@ class _AddPageState extends State<AddPage> {
                       .add(Todo(content: myController.text, checked: false));
                   Navigator.of(context).pop();
                 },
-                child: Text('전송'))
+                child: Text('Add'))
           ],
         ),
       ),

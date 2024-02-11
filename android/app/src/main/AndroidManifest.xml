@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.todoappgit">
+    package="com.ddynamic.todoapp">
    <application
-        android:label="todoappgit"
+        android:label="PureTask"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,98 +1,5 @@
-// import 'package:flutter/material.dart';
-// import 'package:intl/intl.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
-// import '../Classes_freezed/Todo.dart';
-// import 'AddPage.dart';
-
-// class TodoPage extends StatefulWidget {
-//   TodoPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<TodoPage> createState() => _TodoPageState();
-// }
-
-// class _TodoPageState extends State<TodoPage> {
-//   var now = DateTime.now();
-//   late List<Todo> todoInstanceList = [];
-//   List<String> todoList = ["늦지않게 기상", "아침운동", "영어회화", "1일 1Todo 해결"];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     List<CheckboxListTile> listTileList = makeListTileList();
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Simple Todo"),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Column(
-//           children: [
-//             Text(
-//               "${DateFormat('yyyy-MM-dd').format(now)}",
-//               style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
-//             ),
-//             Text(
-//               "${DateFormat('EEEE').format(now)}",
-//               style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
-//             ),
-//             Divider(),
-//             ...listTileList,
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () {
-//           Navigator.of(context)
-//               .push(MaterialPageRoute(
-//                   builder: (context) =>
-//                       AddPage(todoInstanceList))) // 리스트를 넘겨주며 페이지이동
-//               .then((value) {
-//             Todo.saveList(todoInstanceList);
-//             setState(() {});
-//           });
-//         },
-//         child: const Icon(Icons.add),
-//       ),
-//     );
-//   }
-
-//   List<CheckboxListTile> makeListTileList() {
-//     List<CheckboxListTile> checkedList = [];
-//     List<CheckboxListTile> uncheckedList = [];
-
-//     for (Todo todoInstance in todoInstanceList) {
-//       CheckboxListTile tile = CheckboxListTile(
-//         controlAffinity: ListTileControlAffinity.leading,
-//         selected: todoInstance.checked,
-//         activeColor: Colors.grey,
-//         title: Text(todoInstance.content),
-//         value: todoInstance.checked,
-//         onChanged: (value) {
-//           if (value != null) {
-//             setState(() {
-//               todoInstanceList.remove(todoInstance);
-//               todoInstanceList.add(todoInstance.copyWith(checked: value));
-//               Todo.saveList(todoInstanceList);
-//             });
-//           }
-//         },
-//       );
-
-//       if (todoInstance.checked) {
-//         checkedList.add(tile);
-//       } else {
-//         uncheckedList.add(tile);
-//       }
-//     }
-
-//     return [...uncheckedList, ...checkedList];
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Classes_freezed/Todo.dart';
 import 'AddPage.dart';
 
@@ -160,13 +67,14 @@ class _TodoPageState extends State<TodoPage> {
       if (todoInstanceList[index].checked) {
         uncheckedList.add(tile);
       } else {
-        checkedList.add(tile);
+        checkedList.add(tile); 
       }
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Simple Todo"),
+        title: const Text("PureTask", style: TextStyle(fontWeight: FontWeight.bold)), 
+        backgroundColor: Colors.pink.shade50,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -177,7 +85,7 @@ class _TodoPageState extends State<TodoPage> {
             ),
             Text(
               "${DateFormat('EEEE').format(now)}",
-              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
             ),
             const Divider(),
             ...checkedList,
@@ -190,7 +98,7 @@ class _TodoPageState extends State<TodoPage> {
           Navigator.of(context)
               .push(MaterialPageRoute(
                   builder: (context) =>
-                      AddPage(todoInstanceList))) // Pass the list while navigating
+                      AddPage(todoInstanceList))) // 리스트를 넘겨주며 페이지 이동
               .then((value) {
             Todo.saveList(todoInstanceList);
             setState(() {});
